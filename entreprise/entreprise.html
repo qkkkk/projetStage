@@ -11,7 +11,7 @@
     <div class="container">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.html">
                     <img alt="Brand" src="../images/logo_upmf.jpg">
                 </a>
             </div>
@@ -20,34 +20,51 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../navbar/">Default</a></li>
-                    <li><a href="../navbar-static-top/">Static top</a></li>
-                    <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="../navbar/">Espace Entreprise</a></li>
+                    <li><a href="../navbar-static-top/">Espace Etudiant</a></li>
+                    <li><a href="./">Espace Professeur<span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
 
+<div class="container">
+<div class="col-md-8">
+
+    <h1>Formation et Stage</h1>
 <table class="table table-hover table-responsive">
-    ...
+    <tr>
+        <th class="col-md-7"> Formation</th>
+        <th class="col-md-3"> Date debut</th>
+        <th class="col-md-2"> Duree </th>
+    </tr>
+    <tr>
+        <td> partie php</td>
+        <td> partie php</td>
+        <td> partie php </td>
+    </tr>
 </table>
+    </div>
+
+
 
 <form class="form-horizontal">
+    <div class="col-md-4">
+        <p>Authentification</p>
     <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
+
+        <div class="col-sm-12">
             <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-12">
             <div class="checkbox">
                 <label>
                     <input type="checkbox"> Remember me
@@ -56,11 +73,28 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-4">
             <button type="submit" class="btn btn-default">Sign in</button>
         </div>
+        <div class="col-sm-8">
+            <p>mot de passe oublie</p>
+        </div>
+    </div>
+        <div>
+    <p>Vous n'avez pas de compte?</p>
+        <div class="col-sm-6">
+            <p>S'inscrire</p>
+
+            </div>
+        <div class="col-sm-6">
+            <p>Depot direct</p>
+        </div>
+</div>
+
+
     </div>
 </form>
+    </div>
 
 </body>
 </html>
