@@ -5,6 +5,28 @@
     <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
     <title></title>
+
+    <script type="text/javascript">
+
+        function validate_required(field,alerttxt)
+        {
+            with (field)
+            {
+                if (value==null||value=="")
+                {alert(alerttxt);return false}
+                else {return true}
+            }
+        }
+
+        function validate_form(thisform)
+        {
+            with (thisform)
+            {
+                if (validate_required(email,"Email must be filled out!")==false)
+                {email.focus();return false}
+            }
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static ">
@@ -51,7 +73,7 @@
 
 <form class="form-horizontal">
     <div class="col-md-4">
-        <p>Authentification</p>
+        <h2>Authentification</h2>
     <div class="form-group">
 
         <div class="col-sm-12">
