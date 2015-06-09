@@ -33,7 +33,96 @@
     <li role="presentation"><a href="#">mes depot </a></li>
 </ul>
 
-    Formulaire de depot de stage (Sofiane)
+    <form class="form-horizontal">
+        <div class="container">
+            <div class="col-md-8">
+                <h2>Deposer un stage</h2>
+                <div class="form-group">
+                    <label for="nom_stage" class="col-sm-2 control-label">Nom du stage</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name = "nom" id="nom_stage" placeholder="Nom d'entreprise">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date_debut" class="col-sm-2 control-label">Date debut</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="date_debut" placeholder="date_debut">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="duree" class="col-sm-2 control-label">Duree</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="duree" placeholder="duree">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">description</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="description" placeholder="description">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="technique" class="col-sm-2 control-label">technique</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="technique">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="type_traveaux" class="col-sm-2 control-label">type de traveaux</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="type_traveaux" placeholder="type de traveaux">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="annee" class="col-sm-2 control-label">annee</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="annee" placeholder="annee">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="renumeration" class="col-sm-2 control-label">renumeration</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="renumeration" placeholder="renumeration">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date_offre" class="col-sm-2 control-label">date d'offre</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="date_offre" placeholder="date d'offre">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repassword" class="col-sm-2 control-label">confirmer votre Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="repassword" placeholder="confirmer votre Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Valider</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
 
 </body>
 </html>
