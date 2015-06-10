@@ -1,0 +1,46 @@
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: #fff;
+    background-color: #202020;
+    border-bottom: 2px solid #F27329;
+    border-radius: 0;
+    font-size: 22px;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: red;
+    border-radius: 0;
+    color: white;
+}
+
+.navbar-brand>img {
+    width: 120px;
+    text-align:left;
+}
+.nav-pills{
+    text-align: right;
+    padding-right: 10%;
+}
+
+.nav{
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.nav-pills > li{
+    float: none;
+    display: inline-block;
+}
+
+.thumbnail{
+}
+
+.thumbnail.row{
+    margin-left:50px;
+    margin-right: 50px;
+}
+
+.navbar-fixed-top{
+    clear: both;
+}
