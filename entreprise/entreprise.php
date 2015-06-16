@@ -1,3 +1,13 @@
+<?php
+session_start();
+$conn = mysqli_connect("localhost","root","root","gestiondesstages");
+if(mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL" . mysqli_connect_error();
+}
+$resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -59,30 +69,36 @@
     <tr>
         <th class="col-md-7"> Formation</th>
         <th class="col-md-3"> Date debut</th>
-        <th class="col-md-2"> Duree </th>
+        <th class="col-md-2"> Duree (mois) </th>
     </tr>
-    <tr>
-        <td> partie php</td>
-        <td> partie php</td>
-        <td> partie php </td>
-    </tr>
+
+        <?php
+        while ($data = mysqli_fetch_assoc($resultat)) {
+            echo '<tr>';
+            echo '<td>'.$data['libelle']. '</td>';
+            echo '<td>'.$data['date_debut'].'</td>';
+            echo '<td>'.$data['duree'].'</td>';
+            echo '</tr>';
+        }
+        mysqli_close($conn);?>
+
 </table>
     </div>
 
 
 
-<form class="form-horizontal">
+<form name="reg" action="authentification.php" method="post"  class="form-horizontal">
     <div class="col-md-4">
         <h2>Authentification</h2>
     <div class="form-group">
 
         <div class="col-sm-12">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-12">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+            <input type="password" class="form-control"  name="password" id="inputPassword3" placeholder="Password">
         </div>
     </div>
     <div class="form-group">
@@ -109,7 +125,7 @@
 
             </div>
         <div class="col-sm-6">
-            <a href="entreprise depot stage.html">Depot direct</a>
+            <a href="../poubelle/entreprise%20depot%20stage.html">Depot direct</a>
         </div>
 </div>
 

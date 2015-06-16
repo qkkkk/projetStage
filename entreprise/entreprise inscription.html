@@ -31,7 +31,7 @@
 </nav>
 
 
-    <form class="form-horizontal" action ="inscriptionEntreprise.php" methode="POST">
+    <form class="form-horizontal" action ="inscriptionEntreprise.php" method="post">
         <div class="container">
         <div class="col-md-8">
             <h2>Inscription</h2>
@@ -49,10 +49,25 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 <label for="tel" class="col-sm-2 control-label">numero telephone</label>
                 <div class="col-sm-10">
                     <input type="tel" class="form-control" name="tel" id="tel" placeholder="numero telephone">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="contact" class="col-sm-2 control-label">nom du contact</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nom_contact" id="contact" placeholder="nom du contact">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fonction" class="col-sm-2 control-label">fonction</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="fonction" id="fonction" placeholder="fonction">
                 </div>
             </div>
 
@@ -92,7 +107,6 @@
             </div>
 
 
-
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">mot de passe</label>
                 <div class="col-sm-10">
@@ -108,7 +122,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Valider</button>
+                    <button type="submit" name="submit" class="btn btn-default">Valider</button>
                 </div>
 
             </div>

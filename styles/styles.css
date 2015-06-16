@@ -25,12 +25,20 @@
 
 .nav{
     background-color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .nav-pills > li{
     float: none;
     display: inline-block;
+}
+
+.navbar-right{
+    margin-bottom: 0px;
+}
+
+.navigation{
+    clear-after: bottom;
 }
 
 .thumbnail{
