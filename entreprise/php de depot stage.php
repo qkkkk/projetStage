@@ -16,22 +16,30 @@ $query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or
 $result = mysqli_query($connect,$query);
         while ($data = mysqli_fetch_assoc($result)) {
             $data['id_entreprise'];
-            $id_entreprise=$data['id_entreprise'];
+            $id_entreprise = $data['id_entreprise'];
 
-            $sql1 = "INSERT INTO stage ( titre, date_publication, date_debut, duree, renumeration, description, ficher, id_entreprise)
+            $type_traveaux = $_POST['type_traveaux'];
+            $all_traveaux = implode(",", $type_traveaux);
+            echo $all_traveaux;
+
+            $technologies = $_POST['technologies'];
+            $all_technologies = implode(",", $technologies);
+            echo $all_technologies;
+
+            $sql1 = "INSERT INTO stage ( titre, date_publication, date_debut, duree, renumeration, description, ficher, id_entreprise, nom_technologies, nom_type_traveaux)
 VALUES
-( '{$_POST['titre']}',now(), '{$_POST['date_debut']}', '{$_POST['duree']}','{$_POST['renumeration']}','{$_POST['description']}','{$_POST['ficher']}',$id_entreprise)";
+( '{$_POST['titre']}',now(), '{$_POST['date_debut']}', '{$_POST['duree']}','{$_POST['renumeration']}','{$_POST['description']}','{$_POST['ficher']}',$id_entreprise,'$all_traveaux','$all_technologies' )";
 
-
+        }
             if (mysqli_query($connect, $sql1)) {
                 echo "reussi";
             } else {
                 echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
 
             }
+?>
 
-
-            $type_traveaux=$_POST['type_traveaux'];
+           /* $type_traveaux=$_POST['type_traveaux'];
             $all_traveaux=implode(",",$type_traveaux);
             echo$all_traveaux;
 
@@ -46,7 +54,6 @@ VALUES
             $sql2 = "INSERT INTO type_traveaux (nom, id_stage)
 VALUES
 ('$all_traveaux', $identifiant)";
-
 
 
             $sql3 = "INSERT INTO technologies (nom, id_stage)
@@ -69,7 +76,7 @@ VALUES
 
             }
         }
-?>
+?> */
 
 
 //$id_entreprise = mysqli_query($connect,$query);

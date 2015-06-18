@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="col-md-8">
+    <div class="col-md-12">
 
         <h2>vos depots</h2>
         <table class="table table-hover table-responsive">

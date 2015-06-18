@@ -1,6 +1,12 @@
 <?php
 session_start();
+$connect = mysqli_connect("localhost","root","root","gestiondesstages");
+if(mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL" . mysqli_connect_error();
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -90,28 +96,33 @@ session_start();
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <label for="technologies" class="col-sm-2 control-label">technologies utilisees</label>
                     <div class="col-sm-10">
+                        <?php
+                        $resultat_technologies = mysqli_query($connect,"SELECT * FROM technologies") or die(mysql_error());
+                        while ($data = mysqli_fetch_assoc($resultat_technologies)) { ?>
                         <label class="checkbox-inline">
-                            <input type="checkbox"  name="technologies[]" id="technologies" value="java"> Java
+                            <input type="checkbox"  name="technologies[]" id="technologies" value="<?php echo $data['nom']?>"> <?php echo $data['nom']?>
                         </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies[]" id="technologies" value="php"> php
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies[]" id="technologies" value="javascript"> javascript
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies[]" id="technologies" value="sql"> sql
-                        </label>
+                       <?php }
+                        ?>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="type_traveaux" class="col-sm-2 control-label">type de traveaux</label>
                     <div class="col-sm-10">
-                        <label class="checkbox-inline">
+                        <?php
+                        $resultat_traveaux = mysqli_query($connect,"SELECT * FROM type_traveaux") or die(mysql_error());
+                        while ($data = mysqli_fetch_assoc($resultat_traveaux)) { ?>
+                            <label class="checkbox-inline">
+                                <input type="checkbox"  name="type_traveaux[]" id="type_traveaux" value="<?php echo $data['nom']?>"> <?php echo $data['nom']?>
+                            </label>
+                        <?php }
+                        ?>
+                        <!--<label class="checkbox-inline">
                             <input type="checkbox"  name="type_traveaux[]" id="type_traveaux" value="developpment web"> developpement web
                         </label>
                         <label class="checkbox-inline">
@@ -119,7 +130,7 @@ session_start();
                         </label>
                         <label class="checkbox-inline">
                             <input type="checkbox" name="type_traveaux[]" id="type_traveaux" value="application mobile"> application mobile
-                        </label>
+                        </label>-->
                     </div>
                 </div>
 
@@ -146,7 +157,7 @@ session_start();
     </div>
 
     <div class="container">
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             <h2>vos depots</h2>
             <table class="table table-hover table-responsive">
@@ -165,11 +176,6 @@ session_start();
 
                 <?php
 
-
-                $connect = mysqli_connect("localhost","root","root","gestiondesstages");
-                if(mysqli_connect_errno()) {
-                    echo "Failed to connect to MySQL" . mysqli_connect_error();
-                }
                 $email=$_SESSION['email'];
                 $query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or die(mysql_error());
                 $result = mysqli_query($connect,$query);
@@ -186,10 +192,12 @@ session_start();
                         echo '<td>' . $data2['duree'] . '</td>';
                         echo '<td>' . $data2['description'] . '</td>';
                         echo '<td>' . $data2['ficher'] . '</td>';
-                      //  echo '<td>' . $data2['technologies'] . '</td>';
-                      //  echo '<td>' . $data2['type_traveaux'] . '</td>';
-                        echo '<td>' . $data2['remumeration'] . '</td>';
+                        echo '<td>' . $data2['nom_type_traveaux'] . '</td>';
+                        echo '<td>' . $data2['nom_technologies'] . '</td>';
+                        echo '<td>' . $data2['renumeration'] . '</td>';
                         echo '<td>' . $data2['valide'] . '</td>';
+
+
                         echo '</tr>';
                     }
                 }
@@ -197,9 +205,6 @@ session_start();
 
             </table>
         </div>
-
-
-
 
 </body>
 </html>
