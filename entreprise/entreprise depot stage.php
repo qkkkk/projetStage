@@ -94,16 +94,16 @@ session_start();
                     <label for="technologies" class="col-sm-2 control-label">technologies utilisees</label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
-                            <input type="checkbox"  name="technologies" id="technologies" value="java"> Java
+                            <input type="checkbox"  name="technologies[]" id="technologies" value="java"> Java
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies" id="technologies" value="php"> php
+                            <input type="checkbox" name="technologies[]" id="technologies" value="php"> php
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies" id="technologies" value="javascript"> javascript
+                            <input type="checkbox" name="technologies[]" id="technologies" value="javascript"> javascript
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="technologies" id="technologies" value="sql"> sql
+                            <input type="checkbox" name="technologies[]" id="technologies" value="sql"> sql
                         </label>
                     </div>
                 </div>
@@ -112,13 +112,13 @@ session_start();
                     <label for="type_traveaux" class="col-sm-2 control-label">type de traveaux</label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
-                            <input type="checkbox"  name="type_traveaux" id="type_traveaux" value="developpment web"> developpement web
+                            <input type="checkbox"  name="type_traveaux[]" id="type_traveaux" value="developpment web"> developpement web
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="type_traveaux" id="type_traveaux" value="projet"> gestion de projet
+                            <input type="checkbox" name="type_traveaux[]" id="type_traveauxp" value="gestion de projet"> gestion de projet
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="type_traveaux" id="type_traveaux" value="application mobile"> application mobile
+                            <input type="checkbox" name="type_traveaux[]" id="type_traveaux" value="application mobile"> application mobile
                         </label>
                     </div>
                 </div>
@@ -144,6 +144,60 @@ session_start();
 
     <div id="mesDepots">
     </div>
+
+    <div class="container">
+        <div class="col-md-8">
+
+            <h2>vos depots</h2>
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <th class="col-md-2"> titre </th>
+                    <th class="col-md-1"> date debut souhaite</th>
+                    <th class="col-md-1"> date de depot </th>
+                    <th class="col-md-1"> Duree (mois) </th>
+                    <th class="col-md-2"> description </th>
+                    <th class="col-md-1"> ficher </th>
+                    <th class="col-md-1"> technologies utilisees </th>
+                    <th class="col-md-1"> type de traveaux </th>
+                    <th class="col-md-1"> renumeration </th>
+                    <th class="col-md-1"> etat </th>
+                </tr>
+
+                <?php
+
+
+                $connect = mysqli_connect("localhost","root","root","gestiondesstages");
+                if(mysqli_connect_errno()) {
+                    echo "Failed to connect to MySQL" . mysqli_connect_error();
+                }
+                $email=$_SESSION['email'];
+                $query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or die(mysql_error());
+                $result = mysqli_query($connect,$query);
+                while ($data = mysqli_fetch_assoc($result)) {
+                    $data['id_entreprise'];
+                    $id_entreprise = $data['id_entreprise'];
+                    $query2 = "SELECT * FROM stage WHERE id_entreprise=$id_entreprise ";
+                    $result2 = mysqli_query($connect, $query2);
+                    while ($data2 = mysqli_fetch_assoc($result2)) {
+                        echo '<tr>';
+                        echo '<td>' . $data2['titre'] . '</td>';
+                        echo '<td>' . $data2['date_debut'] . '</td>';
+                        echo '<td>' . $data2['date_publication'] . '</td>';
+                        echo '<td>' . $data2['duree'] . '</td>';
+                        echo '<td>' . $data2['description'] . '</td>';
+                        echo '<td>' . $data2['ficher'] . '</td>';
+                      //  echo '<td>' . $data2['technologies'] . '</td>';
+                      //  echo '<td>' . $data2['type_traveaux'] . '</td>';
+                        echo '<td>' . $data2['remumeration'] . '</td>';
+                        echo '<td>' . $data2['valide'] . '</td>';
+                        echo '</tr>';
+                    }
+                }
+                mysqli_close($connect);?>
+
+            </table>
+        </div>
+
 
 
 

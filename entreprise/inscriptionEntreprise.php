@@ -27,7 +27,7 @@ VALUES
 ('{$_POST['adresse']}','{$_POST['cp']}', '{$_POST['ville']}', '{$_POST['pays']}', $identifiant)";
 
 
-$sql3 = "INSERT INTO contact (contact,fonction,id_entreprise )
+$sql3 = "INSERT INTO contact (nom_contact,fonction,id_entreprise )
 VALUES
 ('{$_POST['nom_contact']}','{$_POST['fonction']}', $identifiant)";
     if (mysqli_query($connect, $sql2)) {
