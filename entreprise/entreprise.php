@@ -63,8 +63,8 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
 
 <div class="container">
 <div class="col-md-8">
-
-    <h1>Formation et Stage</h1>
+    <h1>Vous êtes entreprise</h1>
+    <h2>Formation et Stage</h2>
 <table class="table table-hover table-responsive">
     <tr>
         <th class="col-md-7"> Formation</th>
@@ -99,6 +99,7 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
     <div class="form-group">
         <div class="col-sm-12">
             <input type="password" class="form-control"  name="password" id="inputPassword3" placeholder="Password">
+
         </div>
     </div>
     <div class="form-group">

@@ -26,17 +26,22 @@ $result = mysqli_query($connect,$query);
             $all_technologies = implode(",", $technologies);
             echo $all_technologies;
 
-            $sql1 = "INSERT INTO stage ( titre, date_publication, date_debut, duree, renumeration, description, ficher, id_entreprise, nom_technologies, nom_type_traveaux)
+            $sql1 = "INSERT INTO stage ( titre, date_publication, date_debut, duree, lieu, renumeration, description, ficher, id_entreprise, nom_technologies, nom_type_traveaux)
 VALUES
-( '{$_POST['titre']}',now(), '{$_POST['date_debut']}', '{$_POST['duree']}','{$_POST['renumeration']}','{$_POST['description']}','{$_POST['ficher']}',$id_entreprise,'$all_traveaux','$all_technologies' )";
+( '{$_POST['titre']}',now(), '{$_POST['date_debut']}', '{$_POST['duree']}','{$_POST['lieu']}','{$_POST['renumeration']}','{$_POST['description']}','{$_POST['ficher']}',$id_entreprise,'$all_traveaux','$all_technologies' )";
 
         }
-            if (mysqli_query($connect, $sql1)) {
-                echo "reussi";
-            } else {
-                echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
+if (mysqli_query($connect, $sql1)) {
+    echo "reussi";
+} else {
+    echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
 
-            }
+}
+header("Location: entreprise depot stage.php");
+//确保重定向后，后续代码不会被执行
+exit;
+
+
 ?>
 
            /* $type_traveaux=$_POST['type_traveaux'];
