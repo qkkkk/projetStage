@@ -1,2 +1,0 @@
-# projetStage
-projet stage

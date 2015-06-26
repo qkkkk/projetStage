@@ -7,21 +7,35 @@
     <title></title>
 </head>
 <body>
+
+
+
 <nav class="navbar navbar-default navbar-static ">
     <div class="container">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand col-sm-1" href="index.html" >
                     <img alt="Brand" src="../images/logo_upmf.jpg">
                 </a>
             </div>
-            <div class="navbar-text">
+            <div class="navbar-text col-sm-4">
                 <h1>Plate-forme<br/> Stage</h1>
             </div>
-            <div class="navbar-collapse collapse">
-               Partie PHP, apres l'authentification de l'entreprise,
-                afficher Bienvenu XXX
-                et le lien alert, modifier ses infos,et quitter
+            <div class="navigation">
+                <p class="navbar-text navbar-right">Bonjour</p>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></li>
+                <li role="presentation"><a href="#">modifier mes infos</a></li>
+                <li role="presentation"><a href="../entreprise/deconnexion.php">quitter</a></li>
+              </ul>
             </div>
         </div>
     </div>
