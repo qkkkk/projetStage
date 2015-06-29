@@ -1,3 +1,14 @@
+<?php require_once('../connect/connect.php') ?>
+
+<?php
+$resultat = mysqli_query($connect,"SELECT count(DISTINCT nom_entreprise) as total FROM entreprise") or die(mysql_error());
+?>
+
+<?php
+$resultat2 = mysqli_query($connect,"SELECT count(DISTINCT id_stage) as total2 FROM stage") or die(mysql_error());
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -12,7 +23,7 @@
     <div class="container">
      <div class="container-fluid">
          <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <img alt="Brand" src="../images/logo_upmf.jpg">
             </a>
          </div>
@@ -22,8 +33,8 @@
          <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="../entreprise/entreprise.php">Espace Entreprise</a></li>
-            <li><a href="../etudiant/index.html">Espace Etudiant</a></li>
-            <li ><a href="./">Espace Professeur<span class="sr-only">(current)</span></a></li>
+            <li><a href="../navbar-static-top/">Espace Etudiant</a></li>
+            <li ><a href="../enseignant/enseignant%20index.html">Espace Professeur<span class="sr-only">(current)</span></a></li>
         </ul>
          </div>
     </div>
@@ -33,11 +44,15 @@
 
 <div class="jumbotron">
     <div class="container">
-    <h1>Plate-forme du stage</h1>
-    <p>Guten tag! T盲ss盲 on harjoittelun alusta </p>
+    <h1>BIENVENUE SUR LA PLATEFORME DE STAGES DE L'UPMF
+       </h1>
+    <p> Vous allez pouvoir prendre contact avec des entreprises </p>
     <ul>
-        <li>300 Entreprises</li>
-        <li>10000 offres de stage</li>
+
+        <li> 6 Entreprises</li>
+
+
+        <li> 6 offres de stage</li>
     </ul>
     </div>
 </div>

@@ -6,32 +6,30 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
-    <script src="../script/ajax.js"></script>
-    <script src="../script/jquery.min.js"></script>
-    <script src="../script/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript">
-
-        function validate_required(field,alerttxt)
-        {
-            with (field)
-            {
-                if (value==null||value=="")
-                {alert(alerttxt);return false}
-                else {return true}
-            }
-        }
-
-        function validate_form(thisform)
-        {
-            with (thisform)
-            {
-                if (validate_required(email,"Email must be filled out!")==false)
-                {email.focus();return false}
-            }
-        }
-    </script>
+    <!--<script src="../script/ajax.js"></script>-->
+    <!--<script src="../script/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="../script/jquery-1.7.2.min.js"></script>-->
     <title></title>
-
+    <script>
+        $(function() {
+            $("#lienDepot").click(function () {
+                $('#formDepots').css("display", "none");
+                $.ajax({
+                    type: 'GET',
+                    url: "../entreprise/mesDepots2?id=.php",
+                    success: function(resp){
+                        if(resp!=''){
+                            $("#mesDepots").html(resp);
+                        }
+                    }
+                });
+            });
+            $("#lienForm").click(function () {
+                $('#formDepots').css("display", "block");
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -45,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand col-sm-1" href="../index/index.html" >
+                <a class="navbar-brand col-sm-1" href="../index/index.php" >
                     <img alt="Brand" src="../images/logo_upmf.jpg">
                 </a>
             </div>
@@ -68,13 +66,14 @@
 
 <div class="container">
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Deposer stage</a></li>
-    <li role="presentation" ><a href="#" id="depot"  alt="depot" role="button">mes depot </a></li>
+    <li role="presentation" class="active"><a href="#" id="lienForm">Deposer stage</a></li>
+    <li role="presentation" ><a href="#" id="lienDepot"  alt="depot" role="button">mes depot </a></li>
     <!--<a href="#" id="depot">mes depot </a> <form action="mes depots.php" method="post" id="depot">
             <button type="text" name="search" id="search" />
         </form>-->
 </ul>
 
+    <div id="formDepots">
     <form class="form-horizontal" action ="php de depot stage.php" onsubmit="return validate_form(this)" method="post">
         <div class="container">
             <div class="col-md-8">
@@ -161,6 +160,7 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <label for="renumeration" class="col-sm-2 control-label">renumeration</label>
                     <div class="col-sm-10">
@@ -176,19 +176,19 @@
                 </div>
 
 
+
             </div>
         </div>
     </form>
-
-    <div id="mesDepots">
     </div>
 
 
+    <div id="mesDepots">
 
     <div class="container">
         <div class="col-md-12">
 
-            <h2>vos depots</h2>
+            <h2>mes depots</h2>
             <table class="table table-hover table-responsive">
                 <tr>
                     <th class="col-md-1"> titre </th>
@@ -196,13 +196,13 @@
                     <th class="col-md-1"> date de depot </th>
                     <th class="col-md-1"> Duree (mois) </th>
                     <th class="col-md-1"> lieu </th>
-                    <th class="col-md-1"> description </th>
-                    <th class="col-md-1"> ficher </th>
+                    <!--<th class="col-md-1"> description </th>
+                    <th class="col-md-1"> ficher </th>-->
                     <th class="col-md-1"> technologies utilisees </th>
                     <th class="col-md-1"> type de traveaux </th>
                     <th class="col-md-1"> renumeration </th>
                     <th class="col-md-1"> etat </th>
-                    <th class="col-md-1"> modification </th>
+                    <th class="col-md-3"> modification </th>
                 </tr>
 
                 <?php
@@ -222,8 +222,8 @@
                         echo '<td>' . $data2['date_publication'] . '</td>';
                         echo '<td>' . $data2['duree'] . '</td>';
                         echo '<td>' . $data2['lieu'] . '</td>';
-                        echo '<td>' . $data2['description'] . '</td>';
-                        echo '<td>' . $data2['ficher'] . '</td>';
+                       // echo '<td>' . $data2['description'] . '</td>';
+                       // echo '<td>' . $data2['ficher'] . '</td>';
                         echo '<td>' . $data2['nom_type_traveaux'] . '</td>';
                         echo '<td>' . $data2['nom_technologies'] . '</td>';
                         echo '<td>' . $data2['renumeration'] . '</td>';
@@ -257,7 +257,7 @@
             </table>
         </div>
 
-
-
+    </div>
+</div>
 </body>
 </html>

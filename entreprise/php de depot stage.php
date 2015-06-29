@@ -10,10 +10,31 @@ if (mysqli_connect_errno()) {
 //$lignes = mysqli_num_rows($select);
 //$identifiant = $lignes;
 
-$email=$_SESSION['email'];
+$email = $_SESSION['email'];
 
-$query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or die(mysql_error());
-$result = mysqli_query($connect,$query);
+if((isset($_POST['titre']))&&
+(isset($_POST['date_publication']))&&
+(isset($_POST['date_debut']))&&
+(isset($_POST['duree']))&&
+(isset($_POST['lieu']))&&
+(isset($_POST['renumeration']))&&
+(isset($_POST['description']))&&
+(isset($_POST['type_traveaux']))&&
+(isset($_POST['technologies']))) {
+    if ((!empty($_POST['titre'])) &&
+        (!empty($_POST['date_publication'])) &&
+        (!empty($_POST['date_debut'])) &&
+        (!empty($_POST['duree'])) &&
+        (!empty($_POST['lieu'])) &&
+        (!empty($_POST['renumeration'])) &&
+        (!empty($_POST['description'])) &&
+        (!empty($_POST['type_traveaux'])) &&
+        (!empty($_POST['technologies']))
+
+    ) {
+
+        $query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or die(mysql_error());
+        $result = mysqli_query($connect, $query);
         while ($data = mysqli_fetch_assoc($result)) {
             $data['id_entreprise'];
             $id_entreprise = $data['id_entreprise'];
@@ -31,71 +52,27 @@ VALUES
 ( '{$_POST['titre']}',now(), '{$_POST['date_debut']}', '{$_POST['duree']}','{$_POST['lieu']}','{$_POST['renumeration']}','{$_POST['description']}','{$_POST['ficher']}',$id_entreprise,'$all_traveaux','$all_technologies' )";
 
         }
-if (mysqli_query($connect, $sql1)) {
-    echo "reussi";
-} else {
-    echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
+        if (mysqli_query($connect, $sql1)) {
+            echo "reussi";
+        } else {
+            echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
 
-}
-header("Location: entreprise depot stage.php");
-//确保重定向后，后续代码不会被执行
-exit;
-
-
-?>
-
-           /* $type_traveaux=$_POST['type_traveaux'];
-            $all_traveaux=implode(",",$type_traveaux);
-            echo$all_traveaux;
-
-            $technologies=$_POST['technologies'];
-            $all_technologies=implode(",",$technologies);
-            echo$all_technologies;
-
-            $identifiant=mysqli_insert_id($connect);
-
-
-
-            $sql2 = "INSERT INTO type_traveaux (nom, id_stage)
-VALUES
-('$all_traveaux', $identifiant)";
-
-
-            $sql3 = "INSERT INTO technologies (nom, id_stage)
-VALUES
-('$all_technologies',$identifiant)";
-
-
-            if (mysqli_query($connect, $sql2)) {
-                echo "reussi";
-            } else {
-                echo "erreur " . $sql2 . "<br>" . mysqli_error($connect);
-
-            }
-
-
-            if (mysqli_query($connect, $sql3)) {
-                echo "reussi";
-            } else {
-                echo "erreur " . $sql3 . "<br>" . mysqli_error($connect);
-
-            }
         }
-?> */
+        header("Location: entreprise depot stage.php");
+//确保重定向后，后续代码不会被执行
+        exit;
 
-
-//$id_entreprise = mysqli_query($connect,$query);
-//echo $id_entreprise;
-//$lignes = mysqli_num_rows($id_entreprise);
-//echo $lignes;
-
-
-
-//$id_entreprise = mysqli_query($connect,"SELECT id_entreprise FROM  entreprise WHERE email='" . $_SESSION['email'] . "'") or die(mysql_error());
-
-
-
+    }
+    echo "remplir";
+} header("Location: entreprise depot stage.php");
 
 
 
 ?>
+
+
+
+
+
+
+

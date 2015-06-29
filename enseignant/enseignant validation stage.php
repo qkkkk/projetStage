@@ -75,16 +75,18 @@ $(document).ready(function(){
                 <tr>
                     <th class="col-md-2"> titre </th>
                     <th class="col-md-1"> entreprise </th>
+                   <!-- <th class="col-md-1"> email </th>
+                    <th class="col-md-1"> contact </th>-->
                     <th class="col-md-1"> date debut souhaite</th>
-                    <th class="col-md-1"> date de depot </th>
+                    <!--<th class="col-md-1"> date de depot </th>-->
                     <th class="col-md-1"> Duree (mois) </th>
-                    <th class="col-md-1"> description </th>
-                    <th class="col-md-1"> ficher </th>
+                    <!-- <th class="col-md-1"> description </th>
+                    <th class="col-md-1"> ficher </th>-->
                     <th class="col-md-1"> technologies utilisees </th>
                     <th class="col-md-1"> type de traveaux </th>
                     <th class="col-md-1"> renumeration </th>
                     <th class="col-md-1"> validation ou refuse </th>
-                    <th class="col-md-1"> choix </th>
+                    <th class="col-md-3"> choix </th>
                 </tr>
 
                 <?php
@@ -100,16 +102,22 @@ $(document).ready(function(){
                     echo '<tr>';
                     echo '<td>' . $data2['titre'] . '</td>';
                     $id_entreprise = $data2['id_entreprise'];
-                    $query = "SELECT nom_entreprise FROM  entreprise  WHERE id_entreprise= $id_entreprise" or die(mysql_error());
+                    $query = "SELECT nom_entreprise,email FROM  entreprise  WHERE id_entreprise= $id_entreprise" or die(mysql_error());
                     $result = mysqli_query($connect,$query);
                     while ($data = mysqli_fetch_assoc($result)) {
                         echo '<td>' . $data['nom_entreprise'] . '</td>';
+                       // echo '<td>' . $data['email'] . '</td>';
+                    }
+                    $query = "SELECT nom_contact FROM  contact  WHERE id_entreprise= $id_entreprise" or die(mysql_error());
+                    $result = mysqli_query($connect,$query);
+                    while ($data = mysqli_fetch_assoc($result)) {
+                       // echo '<td>' . $data['nom_contact'] . '</td>';
                     }
                     echo '<td>' . $data2['date_debut'] . '</td>';
-                    echo '<td>' . $data2['date_publication'] . '</td>';
+                   // echo '<td>' . $data2['date_publication'] . '</td>';
                     echo '<td>' . $data2['duree'] . '</td>';
-                    echo '<td>' . $data2['description'] . '</td>';
-                    echo '<td>' . $data2['ficher'] . '</td>';
+                   // echo '<td>' . $data2['description'] . '</td>';
+                   // echo '<td>' . $data2['ficher'] . '</td>';
                     echo '<td>' . $data2['nom_type_traveaux'] . '</td>';
                     echo '<td>' . $data2['nom_technologies'] . '</td>';
                     echo '<td>' . $data2['renumeration'] . '</td>';
@@ -125,6 +133,33 @@ $(document).ready(function(){
                     elseif  ($data2['valide']==3) {
                         echo  '<td> stagaire trouve </td>';
                     }
+
+
+
+                     if($data2['valide']==0 ) {
+                         echo'<td>
+            <form name="reg" action="validation.php" method="post"  class="form-horizontal">
+                <input type="hidden" name="id_annonce"  value="'.$data2['id_stage'] .'">
+                <label class="radio-inline" class="col-md-4">
+                    <input type="radio" name="'.$data2['id_stage'] .'"  value="valide" > valide
+                </label>
+                <label class="radio-inline" class="col-md-4">
+                    <input type="radio" name="'.$data2['id_stage'] .'"  value="refuse" > refuse
+                </label>
+                <div class="form-group" >
+                    <div class="col-md-4">
+                        <button type="submit"  class="btn btn-default" >ok</button>
+                    </div>
+                </div>
+            </form>
+        </td>';}
+                    elseif($data2['valide']==1||$data2['valide']==2) {
+                        echo'<td>
+
+                        <button   onclick="showok()" class="btn btn-default">modifier</button>
+
+        </td>';}
+
 
                     echo'<td>
             <form class ="choix" name="reg" action="validation.php" method="post"  class="form-horizontal">
@@ -142,30 +177,6 @@ $(document).ready(function(){
                 </div>
             </form>
         </td>';
-
-                     if($data2['valide']==0 ) {
-                         echo'<td>
-            <form name="reg" action="validation.php" method="post"  class="form-horizontal">
-                <input type="hidden" name="id_annonce"  value="'.$data2['id_stage'] .'">
-                <label class="radio-inline">
-                    <input type="radio" name="'.$data2['id_stage'] .'"  value="valide"> valide
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="'.$data2['id_stage'] .'"  value="refuse"> refuse
-                </label>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit"  class="btn btn-default">ok</button>
-                    </div>
-                </div>
-            </form>
-        </td>';}
-                    elseif($data2['valide']==1||$data2['valide']==2) {
-                        echo'<td>
-
-                        <button   onclick="showok()" class="btn btn-default">modifier</button>
-
-        </td>';}
 
                     echo '</tr>';
                     // }
