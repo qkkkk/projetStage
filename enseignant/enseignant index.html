@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+    <title></title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-static ">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <img alt="Brand" src="../images/logo_upmf.jpg">
+                </a>
+            </div>
+            <div class="navbar-text">
+                <h1>Plate-forme<br/> Stage</h1>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/">Espace Entreprise</a></li>
+                    <li><a href="../navbar-static-top/">Espace Etudiant</a></li>
+                    <li class="active"><a href="./">Espace Professeur<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-md-8">
+
+        <h1>Vous êtes professeur</h1>
+        <p>vous pouvez</p>
+
+    </div>
+
+
+
+    <form name="reg" action="authentification enseignant.php" method="post"  class="form-horizontal">
+        <div class="col-md-4">
+            <h2>Authentification</h2>
+            <div class="form-group">
+
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" name="login" id="inputEmail3" placeholder="login">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control"  name="password" id="inputPassword3" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

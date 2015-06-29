@@ -1,5 +1,7 @@
+<?php require_once('../connect/connect.php') ?>
+
 <div class="container">
-    <div class="col-md-8">
+    <div class="col-md-12" id="mesDepots">
 
         <h2>vos depots</h2>
         <table class="table table-hover table-responsive">
@@ -18,34 +20,42 @@
 
             <?php
 
-
-            $conn = mysqli_connect("localhost","root","root","gestiondesstages");
-            if(mysqli_connect_errno()) {
-                echo "Failed to connect to MySQL" . mysqli_connect_error();
-            }
             $email=$_SESSION['email'];
-            $id_entreprise= "SELECT id_entreprise from entreprise where email= $email";
-            $resultat = mysqli_query($conn,"SELECT * FROM stage where id_entreprise= $id_entreprise") or die(mysql_error());
+            $query = "SELECT id_entreprise FROM  entreprise WHERE email='" . $email . "'" or die(mysql_error());
+            $result = mysqli_query($connect,$query);
+            while ($data = mysqli_fetch_assoc($result)) {
+                $data['id_entreprise'];
+                $id_entreprise = $data['id_entreprise'];
+                $query2 = "SELECT * FROM stage WHERE id_entreprise=$id_entreprise ";
+                $result2 = mysqli_query($connect, $query2);
+                while ($data2 = mysqli_fetch_assoc($result2)) {
+                    echo '<tr>';
+                    echo '<td>' . $data2['titre'] . '</td>';
+                    echo '<td>' . $data2['date_debut'] . '</td>';
+                    echo '<td>' . $data2['date_publication'] . '</td>';
+                    echo '<td>' . $data2['duree'] . '</td>';
+                    echo '<td>' . $data2['description'] . '</td>';
+                    echo '<td>' . $data2['ficher'] . '</td>';
+                    echo '<td>' . $data2['nom_type_traveaux'] . '</td>';
+                    echo '<td>' . $data2['nom_technologies'] . '</td>';
+                    echo '<td>' . $data2['renumeration'] . '</td>';
+                    if ($data2['valide']==0) {
+                        echo '<td> en attente </td>';
+                    }
+                    elseif  ($data2['valide']==1) {
+                        echo  '<td> valide </td>';
+                    }
+                    elseif  ($data2['valide']==2) {
+                        echo  '<td> refuse </td>';
+                    }
 
-            while ($data = mysqli_fetch_assoc($resultat)) {
-                echo '<tr>';
-                echo '<td>'.$data['titre']. '</td>';
-                echo '<td>'.$data['date_debut'].'</td>';
-                echo '<td>'.$data['date_publication'].'</td>';
-                echo '<td>'.$data['duree'].'</td>';
-                echo '<td>'.$data['description'].'</td>';
-                echo '<td>'.$data['ficher'].'</td>';
-                echo '<td>'.$data['technologies'].'</td>';
-                echo '<td>'.$data['type_traveaux'].'</td>';
-                echo '<td>'.$data['remumeration'].'</td>';
-                echo '<td>'.$data['valide'].'</td>';
-                echo '</tr>';
+                    echo '</tr>';
+                }
             }
-            mysqli_close($conn);?>
+            mysqli_close($connect);?>
 
         </table>
     </div>
-
 
  */chercher id mes depot
 
