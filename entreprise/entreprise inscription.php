@@ -1,9 +1,49 @@
+<?php session_cache_limiter('private, must-revalidate');
+require_once('../connect/connect.php') ?>
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+    <script type="text/javascript" src="../script/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../script/jquery.validate.js"></script>
+    <script type="text/javascript" src="../script/jquery.form.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form_inscription_entreprise").validate({
+                rules: {
+                    nom_entreprise: "required",// simple rule, converted to {required:true}
+                    email: {// compound rule
+                        required: true,
+                        email: true
+                    },
+                    tel: {
+                        tel: true
+                    },
+                    nom_contact: {
+                        required: true
+                    },
+                    fonction: {
+                        required: true
+                    },
+                    site_web: {
+                        required: true
+                    },
+                    adresse: {
+                        required: true
+                    },
+
+                    ville: {
+                        required: true
+                    }
+                }
+            });
+        });
+    </script>
+
     <title></title>
 
 </head>
@@ -31,7 +71,7 @@
 </nav>
 
 
-    <form class="form-horizontal" action ="inscriptionEntreprise.php" method="post">
+    <form id="form_inscription_entreprise" class="form-horizontal" action ="entreprise inscription.php" method="post">
         <div class="container">
         <div class="col-md-8">
             <h2>Inscription</h2>
@@ -58,9 +98,9 @@
             </div>
 
             <div class="form-group">
-                <label for="contact" class="col-sm-2 control-label">nom du contact</label>
+                <label for="nom_contact" class="col-sm-2 control-label">nom du contact</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nom_contact" id="contact" placeholder="nom du contact">
+                    <input type="text" class="form-control" name="nom_contact" id="nom_contact" placeholder="nom du contact">
                 </div>
             </div>
 
@@ -72,10 +112,10 @@
             </div>
 
             <div class="form-group">
-                <label for="siteweb" class="col-sm-2 control-label">site web</label>
+                <label for="site_web" class="col-sm-2 control-label">site web</label>
                 <div class="col-sm-10">
                     <input type="url" class="form-control" name="site_web"
-                           id="siteweb" placeholder="site web">
+                           id="site_web" placeholder="site web">
                 </div>
             </div>
 
@@ -128,8 +168,87 @@
             </div>
 
         </div>
+
         </div>
     </form>
+
+<?php
+if((isset($_POST['nom_entreprise']))&&
+    (isset($_POST['email']))&&
+    (isset($_POST['tel']))&&
+    (isset($_POST['site_web']))&&
+    (isset($_POST['adresse']))&&
+    (isset($_POST['ville']))&&
+    (isset($_POST['pays']))&&
+    (isset($_POST['cp']))&&
+    (isset($_POST['nom_contact']))&&
+    (isset($_POST['fonction']))&&
+    (isset($_POST['password']))&&
+    (isset($_POST['repassword']))) {
+    if ((!empty($_POST['nom_entreprise'])) &&
+        (!empty($_POST['email'])) &&
+        (!empty($_POST['tel'])) &&
+        (!empty($_POST['site_web'])) &&
+        (!empty($_POST['adresse'])) &&
+        (!empty($_POST['ville'])) &&
+        (!empty($_POST['pays'])) &&
+        (!empty($_POST['cp'])) &&
+        (!empty($_POST['nom_contact'])) &&
+        (!empty($_POST['fonction'])) &&
+        (!empty($_POST['password'])) &&
+        (!empty($_POST['repassword']))
+    ) {
+        if ($_POST['password'] == $_POST['repassword']) {
+// if(strlen($_POST['password'])>4){
+
+            $req = "select * from entreprise";
+            $select = mysqli_query($connect, $req);
+
+            $sql1 = "INSERT INTO entreprise (nom_entreprise,email, tel, site_web, mot_passe)
+VALUES
+('{$_POST['nom_entreprise']}','{$_POST['email']}', '{$_POST['tel']}', '{$_POST['site_web']}','{$_POST['password']}')";
+
+
+            if (mysqli_query($connect, $sql1)) {
+                echo "reussi";
+            } else {
+                echo "erreur " . $sql1 . "<br>" . mysqli_error($connect);
+
+            }
+            $identifiant = mysqli_insert_id($connect);
+            $sql2 = "INSERT INTO adresse (adresse, cp, ville, pays, id_entreprise)
+VALUES
+('{$_POST['adresse']}','{$_POST['cp']}', '{$_POST['ville']}', '{$_POST['pays']}', $identifiant)";
+
+
+            $sql3 = "INSERT INTO contact (nom_contact,fonction,id_entreprise )
+VALUES
+('{$_POST['nom_contact']}','{$_POST['fonction']}', $identifiant)";
+            if (mysqli_query($connect, $sql2)) {
+                echo "reussi";
+            } else {
+                echo "erreur " . $sql2 . "<br>" . mysqli_error($connect);
+
+            }
+
+            if (mysqli_query($connect, $sql3)) {
+                echo "reussi";
+            } else {
+                echo "erreur " . $sql3 . "<br>" . mysqli_error($connect);
+
+            }
+
+            header("Location: entreprise.php");
+// $_POST['password']= md5($_POST['password']);
+//$_POST['repassword']= md5($_POST['repassword']);
+        } else echo "les mots de passes ne sont pas identiques";
+        // }else echo"le mot de passe tres court";
+
+    } else echo "veuillez saisir tous les champs";
+}
+
+?>
+
 
 </body>
 </html>

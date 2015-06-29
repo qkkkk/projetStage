@@ -7,12 +7,23 @@
       // e.preventDefault();
    // });
 
-    $("#depot").click(function(){
-        var d = $(this).attr('alt');
+    $("#lienDepot").click(function(){
+        console.log('test');
+        $('#formDepots').css(
+            "display", "none");
+    });
+
+
+$("#form").click(function() {
+    $('#formDepots').css(
+        "display", "block");
+});
+
+// var d = $(this).attr('alt');
         //$('#logo').html('<h2>Manuel ATENCIA\'s search engine</h2><hr />');
         //$('#results').html('<h2><img src="images/loading.gif" width="22" alt="" />Loading</h2>');
 
-        $.ajax({
+       /* $.ajax({
 
             type: 'POST',
             url: "../entreprise/mes depots.php",
@@ -25,4 +36,4 @@
         });
         return false;
    // });
-});
+});*/

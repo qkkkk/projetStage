@@ -1,10 +1,7 @@
+<?php require_once('../connect/connect.php') ?>
+
 <?php
-session_start();
-$conn = mysqli_connect("localhost","root","root","gestiondesstages");
-if(mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL" . mysqli_connect_error();
-}
-$resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
+$resultat = mysqli_query($connect,"SELECT * FROM formation") or die(mysql_error());
 ?>
 
 
@@ -64,7 +61,7 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
 <div class="container">
 <div class="col-md-8">
     <h1>Vous êtes entreprise</h1>
-    <h2>Formation et Stage</h2>
+    <h2>Formations et Stages du Master IC2A</h2>
 <table class="table table-hover table-responsive">
     <tr>
         <th class="col-md-7"> Formation</th>
@@ -80,7 +77,7 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
             echo '<td>'.$data['duree'].'</td>';
             echo '</tr>';
         }
-        mysqli_close($conn);?>
+        mysqli_close($connect);?>
 
 </table>
     </div>
@@ -122,7 +119,7 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
         <div>
     <p>Vous n'avez pas de compte?</p>
         <div class="col-sm-6">
-           <a href="entreprise inscription.html">&nbsp;&nbsp;S'inscrire</a>
+           <a href="entreprise inscription.php">&nbsp;&nbsp;S'inscrire</a>
 
             </div>
         <div class="col-sm-6">
@@ -134,6 +131,7 @@ $resultat = mysqli_query($conn,"SELECT * FROM formation") or die(mysql_error());
     </div>
 </form>
     </div>
+
 
 </body>
 </html>
